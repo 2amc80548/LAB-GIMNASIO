@@ -88,9 +88,9 @@ jobs:
           }
 
           # --- VACIAR REPOS DEL GIMNASIO ---
-          empty_repo "gimnasio/members"
-          empty_repo "gimnasio/billing"
-          empty_repo "gimnasio/access-control"
+            empty_repo "gestion-gimnasio/members"
+            empty_repo "gestion-gimnasio/billing"
+            empty_repo "gestion-gimnasio/access-control"
 
       - name: Terraform destroy
         working-directory: ${{ env.TF_WORKING_DIR }}
