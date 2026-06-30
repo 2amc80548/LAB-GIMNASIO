@@ -19,7 +19,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  TF_WORKING_DIR: terraform
+  TF_WORKING_DIR: terraform/option-b-ecs
   TF_STATE_KEY: gimnasio/terraform.tfstate
   TF_LOCK_TABLE: gimnasio-tflock
 
