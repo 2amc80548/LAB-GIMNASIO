@@ -1,0 +1,55 @@
+# ============================================================
+#  Infraestructura como Código (IaC) — desarrollo local
+# ------------------------------------------------------------
+#  Este archivo describe declarativamente la infra que necesitan
+#  nuestros microservicios para correr local:
+#    - NATS  → broker de mensajería entre los servicios
+#    - Redis → persistencia de órdenes (escrito por orders)
+#
+#  Las apps (orders, notifications) corren en tu host con
+#  `npm run start:*` para tener hot-reload.
+# ============================================================
+services:
+  nats:
+    image: nats:2.10-alpine
+    container_name: nats-broker
+    restart: unless-stopped
+    ports:
+      - "4222:4222"   
+      - "8222:8222"   
+    command:
+      - "-js"                 
+      - "-m"                  
+      - "8222"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://localhost:8222/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-gimnasio
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: gimnasio_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+#  phpmyadmin:
+#    image: phpmyadmin/phpmyadmin
+#    environment:
+#      PMA_HOST: db
+#      PMA_PORT: 3306
+#      PMA_USER: root
+#      PMA_PASSWORD: admin
+#    ports:
+#      - "8080:80"
+#    depends_on:
+#      - db 
+
+volumes:
+  mysql_data:
