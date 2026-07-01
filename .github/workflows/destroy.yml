@@ -96,7 +96,8 @@ jobs:
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: |
           terraform destroy -auto-approve -input=false \
-            -var="aws_region=${{ vars.AWS_REGION }}"
+            -var="aws_region=${{ vars.AWS_REGION }}" \
+            -var="db_password=${{ secrets.DB_PASSWORD }}"
 
       - name: Delete state backend (opcional)
         if: ${{ inputs.delete_state_backend }}
