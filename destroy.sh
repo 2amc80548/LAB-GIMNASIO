@@ -72,9 +72,9 @@ empty_ecr_repo() {
 }
 
 # Vaciamos los 3 repositorios de nuestro Gimnasio
-empty_ecr_repo "gestion_gimnasio/members"
-empty_ecr_repo "gestion_gimnasio/billing"
-empty_ecr_repo "gestion_gimnasio/access-control"
+empty_ecr_repo "gestion-gimnasio/members"
+empty_ecr_repo "gestion-gimnasio/billing"
+empty_ecr_repo "gestion-gimnasio/access-control"
 
 step "3/4" "Terraform destroy"
 pushd "$TF_DIR" >/dev/null

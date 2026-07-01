@@ -14,4 +14,4 @@ async function bootstrap() {
   Logger.log(`Members HTTP escuchando en http://localhost:${port}`, 'Bootstrap');
 }
 
-bootstrap();
+bootstrap().catch(err => console.error(err));
