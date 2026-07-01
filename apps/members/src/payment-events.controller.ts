@@ -11,13 +11,13 @@ export class PaymentEventsController {
   }
 
   @EventPattern('payment.charged')
-  async handlePaymentCharged(@Payload() socio: any) {
+  async handlePaymentCharged(@Payload() socio: { id: number }) {
     this.logger.log(`🔔 EVENTO RECIBIDO payment.charged: ${JSON.stringify(socio)}`);
     await this.membersService.actualizarEstadoPago(socio.id, 'Pagado');
   }
 
   @EventPattern('payment.failed')
-  async handlePaymentFailed(@Payload() socio: any) {
+  async handlePaymentFailed(@Payload() socio: { id: number }) {
     this.logger.log(`🔔 EVENTO RECIBIDO payment.failed: ${JSON.stringify(socio)}`);
     await this.membersService.actualizarEstadoPago(socio.id, 'Rechazado');
   }
