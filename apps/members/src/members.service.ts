@@ -20,7 +20,7 @@ export class MembersService implements OnModuleInit {
   }
 
   // 1. Crear (POST)
-  async createMember(dto: any) {
+  async createMember(dto: { nombre: string; email: string; plan: string }) {
     const nuevoSocio = this.memberRepository.create({
       nombre: dto.nombre,
       email: dto.email,
@@ -42,7 +42,7 @@ export class MembersService implements OnModuleInit {
   }
 
   // 3. Actualizar (PATCH)
-  async update(id: number, dto: any) {
+  async update(id: number, dto: { nombre?: string; email?: string; plan?: string }) {
     await this.memberRepository.update(id, dto);
     this.logger.log(`Socio actualizado en MySQL: ID ${id}`);
     // Busca y devuelve el socio ya actualizado
