@@ -92,7 +92,8 @@ jobs:
           terraform apply -auto-approve -input=false \
             -target=aws_ecr_repository.members \
             -target=aws_ecr_repository.billing \
-            -target=aws_ecr_repository.access_control
+            -target=aws_ecr_repository.access_control \
+            -var="db_password=${{ secrets.DB_PASSWORD }}" 
 
       - name: Get ECR repository URLs
         id: ecr
