@@ -55,4 +55,10 @@ export class MembersService implements OnModuleInit {
     this.logger.log(`Socio eliminado en MySQL: ID ${id}`);
     return { message: `Socio con ID ${id} eliminado correctamente` };
   }
+
+    // 5. Actualizar solo el estado de pago (llamado desde el listener de NATS)
+  async actualizarEstadoPago(id: number, estado: string) {
+    await this.memberRepository.update(id, { estado_pago: estado });
+    this.logger.log(`estado_pago actualizado en MySQL: ID ${id} -> ${estado}`);
+  }
 }

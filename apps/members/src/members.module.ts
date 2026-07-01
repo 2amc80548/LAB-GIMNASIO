@@ -5,6 +5,7 @@ import { NATS_SERVICE, DEFAULT_NATS_URL } from '@app/contracts';
 import { MembersController } from './members.controller';
 import { MembersService } from './members.service';
 import { Member } from './member.entity';
+import { PaymentEventsController } from './payment-events.controller';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { Member } from './member.entity';
     }),
     TypeOrmModule.forFeature([Member]),
   ],
-  controllers: [MembersController],
+  controllers: [MembersController, PaymentEventsController],
   providers: [MembersService],
 })
 export class MembersModule {}
